@@ -4,6 +4,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { Bounce, toast } from 'react-toastify';
 
 const Registration = () => {
 
@@ -44,8 +45,20 @@ const handelSubmit =(e)=>{
     .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-       // ...
+       
        console.log(userCredential)
+
+       toast('Registration Success', {
+       position: "top-center",
+       autoClose: 5000,
+       hideProgressBar: false,
+       closeOnClick: false,
+       pauseOnHover: true,
+       draggable: true,
+       progress: undefined,
+       theme: "light",
+       transition: Bounce,
+});
     })
       .catch((error) => {
     const errorCode = error.code;
