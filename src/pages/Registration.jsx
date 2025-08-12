@@ -5,6 +5,7 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Bounce, toast } from 'react-toastify';
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Registration = () => {
 
@@ -63,7 +64,19 @@ const handelSubmit =(e)=>{
       .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // ..
+    if(errorCode == 'auth/email-already-in-use'){
+      toast.error('Email/Password already exist!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+});
+    }
     console.log(error)
   });
 
@@ -167,6 +180,14 @@ const handelSubmit =(e)=>{
             type="submit"  className="w-full bg-purple-500 text-white py-2 rounded-md hover:bg-purple-600 transition">
              Register          
           </button>
+
+             <button
+            type="submit"  className="mt-2 w-full bg-purple-500 text-white py-2 rounded-md hover:bg-purple-600 transition">
+             <BeatLoader/>
+          </button>
+
+          
+
 
           <div className="flex justify-center mt-6 space-x-4">
           <button
