@@ -26,6 +26,8 @@ const [passwordError, setPasswordError] = useState('')
 const [confirmPassword, setconfirmPassword] = useState('')
 const [confirmPasswordError, setconfirmPasswordError] = useState('')
 
+const [showLoading , setShowloading] = useState(false)
+
 const auth = getAuth();
 
 const handelSubmit =(e)=>{
@@ -39,16 +41,15 @@ const handelSubmit =(e)=>{
      if(!confirmPassword) setconfirmPasswordError('enter your confirm password')
      if(password != confirmPassword) return setPasswordError('The password and confirm password do not match. Please try again.')
         
+     setShowloading(true) 
         // -------fire base auth part
         
-
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-       
+       setShowloading(false)
        console.log(userCredential)
-
        toast('Registration Success', {
        position: "top-center",
        autoClose: 5000,
@@ -176,17 +177,18 @@ const handelSubmit =(e)=>{
             </label>
           </div>
 
-          <button
+          {
+            showLoading?
+            <button
+            type="submit"  className="mt-2 w-full cursor-progress bg-purple-500 text-white py-2 rounded-md hover:bg-purple-600 transition">
+             <BeatLoader size={10} color={'#393E46'}/>
+          </button>
+          :
+             <button
             type="submit"  className="w-full bg-purple-500 text-white py-2 rounded-md hover:bg-purple-600 transition">
              Register          
           </button>
-
-             <button
-            type="submit"  className="mt-2 w-full bg-purple-500 text-white py-2 rounded-md hover:bg-purple-600 transition">
-             <BeatLoader/>
-          </button>
-
-          
+          }
 
 
           <div className="flex justify-center mt-6 space-x-4">
