@@ -6,15 +6,19 @@ import { createRoutesFromElements } from 'react-router'
 import LayoutOne from './layouts/LayoutOne'
 import Registration from './pages/Registration'
 import { ToastContainer } from 'react-toastify'
+import Login from './pages/Login'
+import Home from './pages/Home'
 
 const App = () => {
 const myRoute = createBrowserRouter(createRoutesFromElements(
   <Route>
+      <Route>
+        <Route path='/' element={<LayoutOne/>}/>
+        <Route index element={<Home/>}/>
+      </Route>
 
-  <Route path='/registration' element={<Registration/>}>
-
-  </Route>
-
+    <Route path='/registration' element={<Registration/>}/>
+    <Route path='/login' element={<Login/>}/>
   </Route>
 ))
 

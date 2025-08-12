@@ -3,9 +3,10 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { Bounce, toast } from 'react-toastify';
 import BeatLoader from "react-spinners/BeatLoader";
+import { Link, useNavigate } from 'react-router';
 
 const Registration = () => {
 
@@ -29,6 +30,7 @@ const [confirmPasswordError, setconfirmPasswordError] = useState('')
 const [showLoading , setShowloading] = useState(false)
 
 const auth = getAuth();
+const navigate = useNavigate()
 
 const handelSubmit =(e)=>{
     e.preventDefault()
@@ -40,8 +42,8 @@ const handelSubmit =(e)=>{
      if(!password) return setPasswordError('enter your password')
      if(!confirmPassword) setconfirmPasswordError('enter your confirm password')
      if(password != confirmPassword) return setPasswordError('The password and confirm password do not match. Please try again.')
-        
      setShowloading(true) 
+
         // -------fire base auth part
         
     createUserWithEmailAndPassword(auth, email, password)
@@ -60,7 +62,15 @@ const handelSubmit =(e)=>{
        progress: undefined,
        theme: "light",
        transition: Bounce,
-});
+       });
+
+      //  send otp
+      sendEmailVerification(auth.currentUser)
+      .then(() => {
+      console.log('otp send')
+      navigate('/login')
+  });
+
     })
       .catch((error) => {
     const errorCode = error.code;
@@ -148,7 +158,7 @@ const handelSubmit =(e)=>{
 {/*--- confirm pass ---- */}
  <p className='text-[12px] text-red-500'>{confirmPasswordError}</p>
 <div className="mb-4 relative">
-  <input
+  <input 
   onChange={(e)=>{setconfirmPassword(e.target.value),setconfirmPasswordError()}}
     type={showPass ? "text" : "password"}
     placeholder="Confirm Password"
@@ -168,8 +178,6 @@ const handelSubmit =(e)=>{
   }
 </div>
      
-
-
           <div className="flex items-center mb-4">
             <input type="checkbox" id="terms" className="mr-2" />
             <label htmlFor="terms" className="text-sm text-gray-600">
@@ -203,7 +211,7 @@ const handelSubmit =(e)=>{
      </div>
 
           <p className="text-sm text-center text-gray-600 mt-6">
-            Already have an account? <a href="#" className="text-purple-500 hover:underline">Sign in</a>
+            Already have an account? <Link to={'/login'} className="text-purple-500 hover:underline">Sign in</Link>
           </p>
         </form>
       </div>
