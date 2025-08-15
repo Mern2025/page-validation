@@ -1,8 +1,15 @@
 import React from 'react'
+import MessageUserList from '../components/MessageUserList'
+import MessageBox from '../components/MessageBox'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+       <div className='flex'>
+           <MessageUserList/>
+           <MessageBox/>
+       </div>
+    </>
   )
 }
 
