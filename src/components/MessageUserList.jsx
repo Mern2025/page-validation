@@ -9,27 +9,6 @@ const users = [
     time: "10:45 AM",
     avatar: "https://i.pravatar.cc/80?img=1",
   },
-  {
-    id: 2,
-    name: "Jane Smith",
-    message: "Let's catch up later!",
-    time: "11:15 AM",
-    avatar: "https://i.pravatar.cc/80?img=2",
-  },
-  {
-    id: 3,
-    name: "Michael Johnson",
-    message: "Can you send me the files?",
-    time: "12:00 PM",
-    avatar: "https://i.pravatar.cc/80?img=3",
-  },
-  {
-    id: 4,
-    name: "Emily Davis",
-    message: "Good morning!",
-    time: "8:30 AM",
-    avatar: "https://i.pravatar.cc/80?img=4",
-  },
 ];
 
 const MessageUserList = () => {
