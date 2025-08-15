@@ -68,6 +68,7 @@ const handelSubmit =(e)=>{
       sendEmailVerification(auth.currentUser)
       .then(() => {
       console.log('otp send')
+      setUserName('')
       navigate('/login')
   });
 
