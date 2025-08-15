@@ -3,9 +3,9 @@ import { MoreVertical, Send } from "lucide-react";
 
 const MessageBox = () => {
   return (
-    <div className="h-[100] w-full bg-white border rounded-lg shadow-md flex flex-col">
+    <div className="h-[100] w-full bg-white border shadow-md flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+      <div className="flex items-center justify-between p-3 border-b border-gray-200">
         <div>
           <h2 className="text-lg font-semibold text-gray-800">John Doe</h2>
           <p className="text-xs text-green-500">Online</p>

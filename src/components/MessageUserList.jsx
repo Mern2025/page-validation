@@ -34,9 +34,9 @@ const users = [
 
 const MessageUserList = () => {
   return (
-    <div className="h-screen flex justify-center items-start bg-gray-100 p-4">
+    <div className="h-screen flex justify-center items-start bg-gray-100 ">
       {/* Sidebar */}
-      <div className="h-full w-80 bg-white border rounded-lg shadow-md flex flex-col">
+      <div className="h-full w-80 bg-white border  shadow-md flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-800">Chats</h2>
