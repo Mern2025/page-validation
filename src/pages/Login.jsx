@@ -15,11 +15,11 @@ const Login = () => {
     if(!formData.email) return alert('Please fill in both email and password fields before submitting')
     if(!formData.password)    alert('enter your password')
 
-
   signInWithEmailAndPassword(auth, formData.email, formData.password)
   .then((userCredential) => {
    
     const user = userCredential.user;
+    
      console.log(user)
 
      if(user.emailVerified == true){
@@ -73,9 +73,6 @@ console.log(errorCode)
 
 
 
-
-
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-sm">
@@ -104,7 +101,7 @@ console.log(errorCode)
             </div>
           </div>
           <button
-          onClick={handelLogin}
+            onClick={handelLogin}
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-md"
           >

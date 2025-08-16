@@ -3,7 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import { Bounce, toast } from 'react-toastify';
 import BeatLoader from "react-spinners/BeatLoader";
 import { Link, useNavigate } from 'react-router';
@@ -50,6 +50,7 @@ const handelSubmit =(e)=>{
     .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
+    console.log(user)
        setShowloading(false)
        console.log(userCredential)
        toast('Registration Success', {
@@ -63,14 +64,23 @@ const handelSubmit =(e)=>{
        theme: "light",
        transition: Bounce,
        });
-
-      //  send otp
+      updateProfile(auth.currentUser, {
+     displayName: userName,
+     photoURL: "https://img.freepik.com/premium-vector/man-professional-business-casual-young-avatar-icon-illustration_1277826-623.jpg"
+     }).then(() => {
+           //  send otp
       sendEmailVerification(auth.currentUser)
       .then(() => {
       console.log('otp send')
       setUserName('')
       navigate('/login')
   });
+  // ...
+   }).catch((error) => {
+    // An error occurred
+   // ...
+   });
+
 
     })
       .catch((error) => {

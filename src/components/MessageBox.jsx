@@ -30,7 +30,7 @@ const MessageBox = () => {
           <div className="bg-blue-500 text-white px-3 py-2 rounded-lg max-w-xs">
             I'm good
           </div>
-          <span className="text-xs text-gray-200 mr-1">10:46 AM</span>
+          <span className="text-xs text-gray-400 mr-1">10:46 AM</span>
         </div>
       </div>
 
