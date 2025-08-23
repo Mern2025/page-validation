@@ -8,6 +8,7 @@ export const userInfo = createSlice({
   reducers: {
     increment: (state) => {
       state.value += 1
+      // console.log(state.value)
     },
     decrement: (state) => {
       state.value -= 1
