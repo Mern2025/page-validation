@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from 'react-router';
 import { Bounce, toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { userInFo } from '../slices/userInfo';
 const Login = () => {
 
 
   const [formData , setFormData] = useState({email: '', emailError: '', password:'', passwordError:''})  
   const auth = getAuth();
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
 
   const handelLogin = ()=>{
@@ -19,9 +22,8 @@ const Login = () => {
   .then((userCredential) => {
    
     const user = userCredential.user;
+    dispatch(userInFo(user))
     
-     console.log(user)
-
      if(user.emailVerified == true){
       toast.success('Login done', {
       position: "top-center",

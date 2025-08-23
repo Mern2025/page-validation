@@ -1,15 +1,11 @@
 import React from "react";
 import { MoreVertical, Send, Smile } from "lucide-react";
 import { useDispatch } from "react-redux";
-// import { decrement, increment } from "../slices/userInfo";
+
 
 const MessageBox = () => {
+  const dispatch = useDispatch()
 
-  // const dispatch = useDispatch()
-
-  const handelCheck = ()=>{
-    dispatch(decrement())
-  }
 
   return (
     <div className="h-[100] w-full bg-white border shadow-md flex flex-col">
@@ -55,7 +51,7 @@ const MessageBox = () => {
           className="flex-1 px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
         />
         {/* Send button */}
-        <button onClick={handelCheck} className="p-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white">
+        <button className="p-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white">
           <Send className="w-5 h-5" />
         </button>
       </div>

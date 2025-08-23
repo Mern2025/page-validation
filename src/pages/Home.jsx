@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
        <div className='flex flex1'>
-        <Navbar/>
+           <Navbar/>
            <MessageUserList/>
            <MessageBox/>
        </div>
